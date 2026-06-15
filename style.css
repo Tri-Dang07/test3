@@ -1,13 +1,4 @@
-/* === 1. THIẾT LẬP RESET CƠ BẢN & BIẾN MÀU SẮC === */
-:root {
-    --primary-slate: #334155; /* Xám Slate đậm */
-    --primary-emerald: #10b981; /* Xanh Emerald */
-    --bg-color: #f1f5f9;
-    --card-shadow: 0 12px 28px rgba(30, 41, 59, 0.07);
-    --font-main: 'Inter', sans-serif;
-    --font-code: 'Fira Code', monospace;
-}
-
+/* === 1. THIẾT LẬP NỀN TẢNG CƠ BẢN === */
 * {
     margin: 0;
     padding: 0;
@@ -15,331 +6,285 @@
 }
 
 body {
-    background-color: var(--bg-color);
-    font-family: var(--font-main);
-    color: #1e293b;
-    line-height: 1.6;
-    padding: 50px 20px;
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f6f9;
+    color: #222222;
+    padding-bottom: 60px;
 }
 
-/* Container chính */
-.page-container {
-    max-width: 1320px;
-    margin: 0 auto;
-    background: #ffffff;
-    padding: 50px;
-    border-radius: 20px;
-    box-shadow: 0 20px 50px rgba(30, 41, 59, 0.05);
-}
-
-/* === 2. TIÊU ĐỀ TRANG === */
-.main-header {
-    text-align: center;
-    margin-bottom: 35px;
-    padding-bottom: 25px;
-    border-bottom: 3px dashed #cbd5e1;
-}
-
-.main-title {
-    font-size: 24px;
-    font-weight: 700;
-    color: #0f172a;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-}
-
-/* === 3. THANH DIỀU HƯỚNG (NAVBAR) === */
-.navigation-bar {
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    padding: 10px;
-    border-radius: 14px;
-    margin-bottom: 40px;
-    box-shadow: 0 5px 15px rgba(16, 185, 129, 0.2);
-}
-
-.navigation-bar a {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 14.5px;
-    font-weight: 600;
-    padding: 14px 22px;
-    border-radius: 10px;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 9px;
-}
-
-.navigation-bar a:hover {
-    background-color: rgba(255, 255, 255, 0.18);
-}
-
-.navigation-bar a.active {
-    background-color: #ffffff;
-    color: #065f46;
+/* === 2. THANH MENU DIỀU HƯỚNG KHỚP THEO ẢNH MẪU === */
+.top-nav {
+    background-color: #72bf44; /* Màu xanh lá đặc trưng từ ảnh chụp thiết bị */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
-/* === 4. BỐ CỤC GRIDS === */
-.advanced-grid {
-    display: grid;
-    grid-template-columns: 1.1fr 1.1fr 0.8fr;
-    gap: 30px;
+.nav-container {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    white-space: nowrap;
 }
 
-/* Cấu trúc Zone Tag */
-.zone-tag {
-    align-self: flex-start;
-    font-size: 11px;
+/* Khử thanh cuộn trên các trình duyệt di động mà vẫn cho phép cuộn ngang */
+.nav-container::-webkit-scrollbar {
+    display: none;
+}
+
+.menu-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    padding: 15px 20px;
+    cursor: pointer;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.nav-item {
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
     font-weight: 700;
-    padding: 6px 14px;
-    border-radius: 8px;
-    color: #ffffff;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
+    padding: 16px 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 0.02em;
+    transition: background-color 0.2s;
 }
-.tag-red { background-color: #ef4444; }
-.tag-emerald { background-color: #10b981; }
-.tag-blue { background-color: #3b82f6; }
 
-/* VÙNG 1: HEADER - PHONG CÁCH "DARK TERMINAL" */
-.zone-1-panel {
-    background: #ffffff;
-    border: 2px solid var(--primary-slate);
-    border-radius: 18px;
-    padding: 30px;
+.nav-item:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.nav-item.active {
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+/* === 3. KHU VỰC BỐ CỤC TRANG BÁO (3 CỘT) === */
+.news-container {
+    max-width: 1240px;
+    margin: 30px auto 0 auto;
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.03);
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 0.8fr;
+    gap: 25px;
+}
+
+.news-column {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Các nhãn phân vùng đồ án */
+.zone-badge {
+    align-self: flex-start;
+    font-size: 10px;
+    font-weight: 800;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+    letter-spacing: 0.05em;
+}
+.badge-red { background-color: #ff3b30; }
+.badge-emerald { background-color: #00a86b; }
+.badge-blue { background-color: #007aff; }
+
+/* === 4. KHỐI HIỂN THỊ MOCK-UP MÃ CODE === */
+.code-mock-box {
+    height: 150px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fira Code', monospace;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.header-mock {
+    background-color: #1a1a1a;
+    color: #4fc3f7;
+    border-left: 5px solid #4fc3f7;
+}
+
+.content-mock {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px dashed #81c784;
+}
+
+/* === 5. CẤU TRÚC CHI TIẾT BÀI VIẾT (MÔ PHỎNG ẢNH MẪU) === */
+.featured-article {
+    margin-bottom: 18px;
+}
+
+.article-thumb {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.article-title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.35;
+    color: #111111;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.article-title:hover {
+    color: #72bf44;
+}
+
+.article-summary {
+    font-size: 13.5px;
+    color: #555555;
+    line-height: 1.55;
+}
+
+/* Danh sách tin tức phụ */
+.sub-article-list {
+    list-style: none;
+    border-top: 1px solid #edf2f7;
+    padding-top: 5px;
+}
+
+.sub-article-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid #edf2f7;
+}
+
+.sub-article-list li a {
+    text-decoration: none;
+    color: #2d3748;
+    font-size: 13.5px;
+    font-weight: 600;
+    line-height: 1.4;
+    display: block;
+}
+
+.sub-article-list li a:hover {
+    color: #72bf44;
+}
+
+/* === 6. CỘT PHẢI (WIDGET COMPONENT & FOOTER) === */
+.sidebar-column {
     display: flex;
     flex-direction: column;
     gap: 25px;
-    transition: box-shadow 0.3s;
 }
 
-.zone-1-panel:hover {
-    box-shadow: 0 15px 35px rgba(51, 65, 85, 0.1);
-}
-
-.terminal-header-box {
-    background: var(--primary-slate);
-    height: 180px;
-    border-radius: 12px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-code);
-    font-size: 14.5px;
-    color: #38bdf8;
-    border-bottom: 5px solid #1e293b;
-    box-shadow: inset 0 -3px 0 rgba(0,0,0,0.2);
-}
-
-.terminal-dots {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    display: flex;
-    gap: 6px;
-}
-.dot { width: 10px; height: 10px; border-radius: 50%; }
-.dot-red { background: #ef4444; }
-.dot-yellow { background: #f59e0b; }
-.dot-green { background: #10b981; }
-
-/* Nội dung Zone 1 */
-.article-block {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.advanced-title {
-    font-size: 18px;
-    font-weight: 700;
-    color: #0f172a;
-    line-height: 1.4;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.excerpt-text {
-    font-size: 14px;
-    color: #64748b;
-    line-height: 1.6;
-}
-
-/* Danh sách bài viết Zone 1 */
-.advanced-sub-list {
-    list-style: none;
-    border-top: 2px solid #e2e8f0;
-    padding-top: 15px;
-}
-.advanced-sub-list li {
-    font-size: 14px;
-    font-weight: 600;
-    color: #334155;
-    padding: 12px 0;
-    border-bottom: 1px solid #f1f5f9;
-    cursor: pointer;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.advanced-sub-list li:hover {
-    color: var(--primary-emerald);
-    padding-left: 5px;
-}
-.advanced-sub-list li i {
-    color: var(--primary-emerald);
-    font-size: 16px;
-}
-
-/* VÙNG 2: MAIN CONTENT */
-.zone-2-column {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-.soft-main-box {
-    height: 180px;
-    background: #f0fdf4;
-    border: 3px dashed #a7f3d0;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-code);
-    font-size: 14.5px;
-    color: #047857;
-}
-
-.main-article-card {
-    background: #ffffff;
+.component-widget {
     border: 1px solid #e2e8f0;
-    border-radius: 18px;
-    padding: 30px;
-    box-shadow: var(--card-shadow);
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    transition: transform 0.3s;
-}
-.main-article-card:hover {
-    transform: translateY(-5px);
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #ffffff;
 }
 
-/* === 5. CỘT PHẢI - CODE EDITOR STYLE === */
-.right-advanced-column {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-.code-editor-details {
-    background: #1e1e1e;
-    border-radius: 14px;
-    overflow: hidden;
-    border: 1px solid #333;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-}
-
-.editor-header {
-    background: #252526;
-    padding: 10px 20px;
-    border-bottom: 1px solid #333;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.editor-title {
-    color: #c5c5c5;
-    font-size: 13px;
-    font-weight: 600;
+.widget-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #2e7d32;
+    border-bottom: 2px solid #72bf44;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.editor-content-area {
-    padding: 25px;
-    font-family: var(--font-code);
-    font-size: 13px;
-    line-height: 1.8;
-    color: #d4d4d4;
-    counter-reset: line-number;
-}
-
-.code-line {
+.component-item {
     display: flex;
-    gap: 15px;
-}
-.code-line::before {
-    counter-increment: line-number;
-    content: counter(line-number);
-    color: #858585;
-    min-width: 25px;
-    text-align: right;
-    user-select: none;
-}
-
-.html-tag { color: #569cd6; }
-.html-attr { color: #9cdcfe; }
-.html-comment { color: #6a9955; font-style: italic; }
-.code-highlight-box {
-    background: #333;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 14px;
+    background-color: #f8fafc;
     padding: 12px;
     border-radius: 6px;
-    margin: 5px 0 15px 0;
-    border-left: 3px solid #ff3b30;
-    color: #d4d4d4;
-    line-height: 1.5;
-}
-.code-badge {
-    color: #b91c1c;
-    background: #fee2e2;
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-size: 11px;
-    font-weight: bold;
-    margin-right: 8px;
-    display: inline-block;
+    border: 1px solid #edf2f7;
 }
 
-/* Footer Zone 3 */
-.footer-advanced-card {
-    background: #ffffff;
-    border: 2px solid #e2e8f0;
-    border-radius: 14px;
-    padding: 25px;
+.item-number {
+    background-color: #cbd5e1;
+    color: #475569;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 6px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.item-text {
+    font-size: 13px;
+    color: #334155;
+    line-height: 1.4;
+}
+
+.item-text code {
+    background-color: #fee2e2;
+    color: #b91c1c;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+/* Khu vực Footer mô phỏng hộp màu đen */
+.footer-widget-area {
     display: flex;
     flex-direction: column;
-    gap: 18px;
 }
 
-.blue-footer-box {
-    background: #0f172a;
-    color: #94a3b8;
+.embedded-footer {
+    background-color: #1a1a1a;
+    color: #ffffff;
     text-align: center;
-    padding: 35px 20px;
-    font-size: 13.5px;
-    font-weight: 600;
-    border-radius: 10px;
-    border-left: 5px solid #3b82f6;
-    letter-spacing: 0.03em;
+    padding: 30px 15px;
+    border-radius: 8px;
 }
 
-/* RESPONSIVE */
-@media (max-width: 1100px) {
-    .advanced-grid {
+.embedded-footer p {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.embedded-footer small {
+    color: #888888;
+    font-size: 11px;
+}
+
+/* === 7. ĐÁP ỨNG DI ĐỘNG (RESPONSIVE) === */
+@media (max-width: 1024px) {
+    .news-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .news-grid {
         grid-template-columns: 1fr;
-        gap: 30px;
+    }
+    .news-container {
+        padding: 15px;
+        margin: 15px auto;
     }
 }
